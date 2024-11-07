@@ -13,6 +13,13 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v3
 
+      - name: Verify index.html exists
+        run: |
+          if [ ! -f ./public/index.html ]; then
+            echo "index.html not found in ./public"
+            exit 1
+          fi
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
